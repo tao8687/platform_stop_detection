@@ -1,0 +1,6 @@
+classes= 1
+train  = /repository/darknet/2019_train.txt
+valid =  /repository/darknet/2019_val.txt
+names =  /home/zhangende/projects/darknet/abc/light.names
+backup = backup
+

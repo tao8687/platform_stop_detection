@@ -1,0 +1,7 @@
+classes= 1
+train  = /repository/darknet/2018_train.txt
+valid =  /repository/darknet/2018_val.txt
+test =  /repository/darknet/2018_test.txt
+names =  /home/zhangende/projects/darknet/stop/stop.names
+backup = backup
+
