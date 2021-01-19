@@ -34,7 +34,7 @@ meta = dn.load_meta("stop/stop.data".encode("utf-8"))
 out = cv2.VideoWriter('stop.MOV',fourcc, 25.0, (320,640))
 pre_dis =10000
 
-cap = cv2.VideoCapture("/repository/darknet/3.MOV")
+cap = cv2.VideoCapture("4.mp4")
 if cap.isOpened():
     success, img = cap.read()
 while success:
@@ -54,19 +54,22 @@ while success:
         bottom = int(y + height / 2)
         #print left,right,top,bottom
         cv2.rectangle(img_resized,(left,top),(right,bottom),(255,0,0),2)
-        img_resized = np.rot90(img_resized,-1)
+        img_resized = np.rot90(img_resized,-1).copy()
 
         distance = round(20*7.85/(height/320*1080),1)
         if distance >=pre_dis:
             distance = pre_dis
         else:
             pre_dis = distance
-
-        img_resized = cv2.putText(img_resized,str(distance)+'m',(0,60),cv2.FONT_HERSHEY_SIMPLEX,1.5,(255,0,0),2)
+        font=cv2.FONT_HERSHEY_SIMPLEX
+        #img_resized = img_resized.astype(np.uint8)
+        img_resized = cv2.putText(img_resized,str(distance)+"m",(0,60),font,1.5,(255,0,0),2)
+        print(distance)
     else :
         img_resized = np.rot90(img_resized,-1)
 
     #img = cv2.resize(img_resized, (1920,1080), interpolation=cv2.INTER_AREA)
+    cv2.imshow("frame",img_resized)
     out.write(img_resized)
     success, img = cap.read()
 
